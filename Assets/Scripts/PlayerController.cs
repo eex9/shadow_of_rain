@@ -33,10 +33,11 @@ public class PlayerController : MonoBehaviour
     void HandleMovement()
     {
         // Multiply by the constant FORCE_STRENGTH bc unity forces are dumb.
-        float horizontal = Input.GetAxis("Horizontal") * speed * Time.deltaTime * FORCE_STRENGTH;
-        float vertical = Input.GetAxis("Vertical") * speed * Time.deltaTime * FORCE_STRENGTH;
+        float horizontal = Input.GetAxis("Horizontal");
+        float vertical = Input.GetAxis("Vertical");
         Vector2 movement = new Vector2(horizontal, vertical);
         movement.Normalize();
+        movement *= speed * Time.deltaTime * FORCE_STRENGTH;
 
         if (Input.GetKeyDown(KeyCode.Space) && !isJumping)
         {
@@ -56,6 +57,7 @@ public class PlayerController : MonoBehaviour
                 jumpTimer = 0;
                 cl.offset = new Vector2(0, 0);
             }
+            // TODO: Use Physics2D.CircleCast to check if the player would collide at their position and change their jump if not
         }
 
         // Apply movement using unity forces system
