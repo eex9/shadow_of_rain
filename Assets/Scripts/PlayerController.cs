@@ -16,6 +16,8 @@ public class PlayerController : MonoBehaviour
     readonly float JUMPSPEED = 60; // 60 = 1 second
     readonly float FORCE_STRENGTH = 100;
 
+    public GameObject shadow;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -33,6 +35,8 @@ public class PlayerController : MonoBehaviour
         // Multiply by the constant FORCE_STRENGTH bc unity forces are dumb.
         float horizontal = Input.GetAxis("Horizontal") * speed * Time.deltaTime * FORCE_STRENGTH;
         float vertical = Input.GetAxis("Vertical") * speed * Time.deltaTime * FORCE_STRENGTH;
+        Vector2 movement = new Vector2(horizontal, vertical);
+        movement.Normalize();
 
         if (Input.GetKeyDown(KeyCode.Space) && !isJumping)
         {
@@ -55,18 +59,18 @@ public class PlayerController : MonoBehaviour
         }
 
         // Apply movement using unity forces system
-        rb.AddForce(new Vector2(horizontal, vertical));
-        cl.offset += new Vector2(0, addY);
+        rb.AddForce(movement);
+        cl.offset -= new Vector2(0, addY);
         transform.position += new Vector3(0, addY, 0);
     }
 
     void OnCollisionEnter2D(Collision2D other)
     {
-
+        
     }
 
     void OnCollisionStay2D(Collision2D other)
     {
-
+        
     }
 }
