@@ -50,6 +50,7 @@ public class PlayerController : MonoBehaviour
         {
             jumpTimer = JUMPSPEED * 2;
             isJumping = true;
+            ani.SetBool("jumping", true;)
         }
 
         if (isJumping)
@@ -57,12 +58,13 @@ public class PlayerController : MonoBehaviour
             // Create a graph that accellerates upwards in reducing amounts in the first half, then accellerates downwards.
             addY = -(JUMPSPEED - jumpTimer) * Time.deltaTime * 1/jumpHeight;
             jumpTimer--;
-            if (jumpTimer <= -1)
+            if (jumpTimer < 0)
             {
                 addY = 0;
                 isJumping = false;
                 jumpTimer = 0;
                 cl.offset = new Vector2(0, 0);
+                ani.SetBool("jumping", false);
             }
             // TODO: Use Physics2D.CircleCast to check if the player would collide at their position and change their jump if not
         }
