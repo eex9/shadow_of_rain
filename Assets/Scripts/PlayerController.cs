@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     public Rigidbody2D rb;
     public Collider2D cl;
+    public Animator ani;
 
     public float speed;
 
@@ -38,6 +39,12 @@ public class PlayerController : MonoBehaviour
         Vector2 movement = new Vector2(horizontal, vertical);
         movement.Normalize();
         movement *= speed * Time.deltaTime * FORCE_STRENGTH;
+        
+        if (horizontal > 0) ani.SetInteger("dir", 1);
+        else if (horizontal < 0) ani.SetInteger("dir", 2);
+        else if (vertical > 0) ani.SetInteger("dir", 3);
+        else if (vertical < 0) ani.SetInteger("dir", 4);
+        else ani.SetInteger("dir", 0);
 
         if (Input.GetKeyDown(KeyCode.Space) && !isJumping)
         {
