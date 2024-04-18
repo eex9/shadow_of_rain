@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public Rigidbody2D rb;
-    public Collider2D cl;
-    public Animator ani;
+    Rigidbody2D rb;
+    Collider2D cl;
+    Animator ani;
 
     public float speed;
 
@@ -17,12 +17,14 @@ public class PlayerController : MonoBehaviour
     readonly float JUMPSPEED = 60; // 60 = 1 second
     readonly float FORCE_STRENGTH = 100;
 
-    public GameObject shadow;
+    // public GameObject shadow;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        rb = GetComponent<RigidBody2D>();
+        cl = GetComponent<Collider2D>();
+        ani = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -50,7 +52,7 @@ public class PlayerController : MonoBehaviour
         {
             jumpTimer = JUMPSPEED * 2;
             isJumping = true;
-            ani.SetBool("jumping", true;)
+            ani.SetBool("jumping", true);
         }
 
         if (isJumping)
