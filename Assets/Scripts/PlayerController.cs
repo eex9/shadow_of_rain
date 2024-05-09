@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        rb = GetComponent<RigidBody2D>();
+        rb = GetComponent<Rigidbody2D>();
         cl = GetComponent<Collider2D>();
         ani = GetComponent<Animator>();
     }
@@ -42,17 +42,17 @@ public class PlayerController : MonoBehaviour
         movement.Normalize();
         movement *= speed * Time.deltaTime * FORCE_STRENGTH;
         
-        if (horizontal > 0) ani.SetInteger("dir", 1);
-        else if (horizontal < 0) ani.SetInteger("dir", 2);
-        else if (vertical > 0) ani.SetInteger("dir", 3);
-        else if (vertical < 0) ani.SetInteger("dir", 4);
-        else ani.SetInteger("dir", 0);
+        // if (horizontal > 0) ani.SetInteger("dir", 1);
+        // else if (horizontal < 0) ani.SetInteger("dir", 2);
+        // else if (vertical > 0) ani.SetInteger("dir", 3);
+        // else if (vertical < 0) ani.SetInteger("dir", 4);
+        // else ani.SetInteger("dir", 0);
 
         if (Input.GetKeyDown(KeyCode.Space) && !isJumping)
         {
             jumpTimer = JUMPSPEED * 2;
             isJumping = true;
-            ani.SetBool("jumping", true);
+            // ani.SetBool("jumping", true);
         }
 
         if (isJumping)
@@ -66,7 +66,7 @@ public class PlayerController : MonoBehaviour
                 isJumping = false;
                 jumpTimer = 0;
                 cl.offset = new Vector2(0, 0);
-                ani.SetBool("jumping", false);
+                // ani.SetBool("jumping", false);
             }
             // TODO: Use Physics2D.CircleCast to check if the player would collide at their position and change their jump if not
         }
@@ -84,6 +84,10 @@ public class PlayerController : MonoBehaviour
 
     void OnCollisionStay2D(Collision2D other)
     {
+        
+    }
+
+    void Kill() {
         
     }
 }
