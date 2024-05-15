@@ -2,16 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AbstractEnemy : MonoBehaviour
+public abstract class AbstractEnemy : MonoBehaviour
 {
     public Direction direction;
     public int sightTimer;
     public float sightRange;
     protected static readonly int layerMask = 3;
-    protected HeadsUpDisplay UIHandler;
+    protected UIHandler HeadsUpDisplay;
 
     void Start() {
-        UIHandler = (HeadsUpDisplay) GameObject.Find("HUD").GetComponent<HeadsUpDisplay>();
+        HeadsUpDisplay = (UIHandler) GameObject.Find("HUD").GetComponent<UIHandler>();
     }
     void Update()
     {
@@ -32,7 +32,7 @@ public class AbstractEnemy : MonoBehaviour
         if (angle < -45) angle = 360 + angle;
         // Debug.Log(((int)(angle + 45))/90);
         if (((int)(angle + 45))/90 == (int)this.direction) {
-            PlayerController player = (PlayerController) resultRB.gameObject.GetComponent<PlayerController>();
+            Application.Quit();
         }
     }
 }

@@ -42,11 +42,11 @@ public class PlayerController : MonoBehaviour
         movement.Normalize();
         movement *= speed * Time.deltaTime * FORCE_STRENGTH;
         
-        // if (horizontal > 0) ani.SetInteger("dir", 1);
-        // else if (horizontal < 0) ani.SetInteger("dir", 2);
-        // else if (vertical > 0) ani.SetInteger("dir", 3);
-        // else if (vertical < 0) ani.SetInteger("dir", 4);
-        // else ani.SetInteger("dir", 0);
+        if (horizontal > 0) ani.SetInteger("dir", 1);
+        else if (horizontal < 0) ani.SetInteger("dir", 3);
+        else if (vertical > 0) ani.SetInteger("dir", 2);
+        else if (vertical < 0) ani.SetInteger("dir", 4);
+        else ani.SetInteger("dir", 0);
 
         if (Input.GetKeyDown(KeyCode.Space) && !isJumping)
         {
