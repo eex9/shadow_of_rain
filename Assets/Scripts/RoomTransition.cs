@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class SceneTransition : MonoBehaviour
+public class RoomTransition : MonoBehaviour
 {
     public AudioClip newMusic;
     public GameObject roomCamera;
