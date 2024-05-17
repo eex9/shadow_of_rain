@@ -14,7 +14,7 @@ public class AudioHandler : MonoBehaviour
 
     }
 
-    void ChangeBGM(AudioClip music) {
+    public void ChangeBGM(AudioClip music) {
         if (bgm.clip.name == music.name) {
             return;
         }

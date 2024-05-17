@@ -20,9 +20,7 @@ public class Pushable : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.tag=="Player")
-        {
-            rb.velocity = other.rigidbody.velocity;
-        }
+        if (other.gameObject.tag!="Player") return;
+        rb.velocity = other.rigidbody.velocity;
     }
 }
